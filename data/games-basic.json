@@ -1,0 +1,11 @@
+{
+    "games": [
+      {
+        "slug": "super-mario",
+        "name": "超级马里奥",
+        "img": "/images/games/super-mario.jpg",
+        "category": "action-games"
+      }
+    ]
+  }
+  

@@ -123,7 +123,7 @@ export default async function GamePage({ params }: { params: { slug: string } })
         {/* 右侧内容保持不变 */}
         <div className="space-y-8">
           {/* Google Ad */}
-          <div className="bg-white rounded-lg shadow-md p-4">
+          <div className="bg-white rounded-lg shadow-md p-4 hidden">
             <div className="aspect-[4/3] bg-gray-100 rounded flex items-center justify-center">
               <p className="text-gray-500">Google Ad</p>
             </div>

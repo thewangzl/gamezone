@@ -1,6 +1,7 @@
 // app/page.tsx
 import CategoryList from '@/components/CategoryList';
 import GameCard from '@/components/GameCard';
+import BackToTop from '@/components/BackToTop';
 import categories from '@/data/categories.json';
 import { getGamesBasicByCategory } from '@/lib/data';
 
@@ -32,7 +33,7 @@ export default async function Home() {
         <section key={category} className="mb-12">
           <div className="flex items-center justify-between mb-6">
             <h2 className="text-3xl font-bold">
-              {categories.categories.find(c => c.slug === category)?.name || category}
+              {categories.categories.find(c => c.slug === category)?.fullName || category}
             </h2>
             <a
               href={`/category/${category}`}
@@ -48,6 +49,9 @@ export default async function Home() {
           </div>
         </section>
       ))}
+
+      {/* 返回顶部按钮 */}
+      <BackToTop />
     </div>
   );
 }

@@ -1,11 +1,14 @@
 // components/Footer.tsx
 import Link from 'next/link';
+import { getCategories } from '@/lib/data';
 
 export default function Footer() {
+  const categories = getCategories();
+
   return (
     <footer className="bg-gray-800 text-white">
       <div className="container mx-auto px-4 py-8">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {/* About */}
           <div>
             <h3 className="text-lg font-semibold mb-4">关于我们</h3>
@@ -14,37 +17,17 @@ export default function Footer() {
             </p>
           </div>
 
-          {/* Quick Links */}
-          <div>
-            <h3 className="text-lg font-semibold mb-4">快速链接</h3>
-            <ul className="space-y-2">
-              <li>
-                <Link href="/" className="text-gray-300 hover:text-white">
-                  首页
-                </Link>
-              </li>
-              <li>
-                <Link href="/search" className="text-gray-300 hover:text-white">
-                  搜索游戏
-                </Link>
-              </li>
-            </ul>
-          </div>
-
           {/* Categories */}
           <div>
             <h3 className="text-lg font-semibold mb-4">游戏分类</h3>
-            <ul className="space-y-2">
-              <li>
-                <Link href="/category/action-games" className="text-gray-300 hover:text-white">
-                  动作游戏
-                </Link>
-              </li>
-              <li>
-                <Link href="/category/puzzle-games" className="text-gray-300 hover:text-white">
-                  益智游戏
-                </Link>
-              </li>
+            <ul className="grid grid-cols-3 gap-2">
+              {categories.map((category) => (
+                <li key={category.slug}>
+                  <Link href={`/category/${category.slug}`} className="text-gray-300 hover:text-white text-sm">
+                    {category.name}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
@@ -52,8 +35,7 @@ export default function Footer() {
           <div>
             <h3 className="text-lg font-semibold mb-4">联系我们</h3>
             <ul className="space-y-2">
-              <li className="text-gray-300">邮箱：contact@example.com</li>
-              <li className="text-gray-300">QQ：123456789</li>
+              <li className="text-gray-300">邮箱：thewangzl@gmail.com</li>
             </ul>
           </div>
         </div>

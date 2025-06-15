@@ -2,6 +2,7 @@
 export interface Category {
     slug: string;
     name: string;
+    fullName: string;
     img: string;
   }
   

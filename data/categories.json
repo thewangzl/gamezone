@@ -3,34 +3,42 @@
       {
         "slug": "action",
         "name": "Action",
+        "fullName": "Action Games",
         "img": "https://imgs.crazygames.com/icon/Action.svg"
       },{
         "slug": "adventure",
         "name": "Adventure",
+        "fullName": "Adventure Games",
         "img": "https://imgs.crazygames.com/icon/Adventure.svg"
       },{
         "slug": "sports",
         "name": "Sports",
+        "fullName": "Sports Games",
         "img": "https://imgs.crazygames.com/icon/Sports.svg"
       },{
         "slug": "beauty",
         "name": "Beauty",
+        "fullName": "Beauty Games",
         "img": "https://imgs.crazygames.com/icon/Beauty.svg"
       },{
         "slug": "casual",
         "name": "Casual",
+        "fullName": "Casual Games",
         "img": "https://imgs.crazygames.com/icon/Casual.svg"
       },{
         "slug": "clicker",
         "name": "Clicker",
+        "fullName": "Clicker Games",
         "img": "https://imgs.crazygames.com/icon/Clicker.svg"
       },{
         "slug": "driving",
         "name": "Driving",
+        "fullName": "Driving Games",
         "img": "https://imgs.crazygames.com/icon/Driving.svg"
       },{
         "slug": "puzzle",
         "name": "Puzzle",
+        "fullName": "Puzzle Games",
         "img": "https://imgs.crazygames.com/icon/Puzzle.svg"
       }
     ]

@@ -3,6 +3,7 @@
 
 import Header from './Header';
 import Footer from './Footer';
+import categories from '@/data/categories.json';
 
 // 临时测试数据
 const testCategories = [
@@ -25,7 +26,7 @@ export default function ClientLayout({
 }) {
   return (
     <>
-      <Header categories={testCategories} />
+      <Header categories={categories.categories} />
       <main className="min-h-screen">{children}</main>
       <Footer />
     </>

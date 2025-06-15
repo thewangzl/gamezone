@@ -1,18 +1,21 @@
 // app/page.tsx
 import CategoryList from '@/components/CategoryList';
 import GameCard from '@/components/GameCard';
+import categories from '@/data/categories.json';
+
+
 
 // 临时测试数据
 const testCategories = [
   {
     slug: 'action-games',
     name: '动作游戏',
-    img: 'https://via.placeholder.com/400x300?text=Action+Games'
+    img: 'https://imgs.crazygames.com/icon/Action.svg'
   },
   {
     slug: 'puzzle-games',
     name: '益智游戏',
-    img: 'https://via.placeholder.com/400x300?text=Puzzle+Games'
+    img: 'https://imgs.crazygames.com/icon/Action.svg'
   }
 ];
 
@@ -35,7 +38,7 @@ export default function Home() {
   return (
     <div className="container mx-auto px-4 py-8">
       <h1 className="text-4xl font-bold mb-8">热门游戏分类</h1>
-      <CategoryList categories={testCategories} />
+      <CategoryList categories={categories.categories} />
       
       <h2 className="text-3xl font-bold mt-12 mb-6">精选游戏</h2>
       <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">

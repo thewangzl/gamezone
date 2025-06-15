@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useState } from 'react';
 import { Category } from '@/types';
+import Image from 'next/image';
 
 interface HeaderProps {
   categories: Category[];
@@ -29,10 +30,17 @@ export default function Header({ categories }: HeaderProps) {
               <Link
                 key={category.slug}
                 href={`/category/${category.slug}`}
-                className={`text-gray-600 hover:text-gray-900 ${
+                className={`flex items-center text-gray-600 hover:text-gray-900 ${
                   pathname === `/category/${category.slug}` ? 'text-blue-600' : ''
                 }`}
               >
+                <Image
+                  src={category.img}
+                  alt={category.name}
+                  width={20}
+                  height={20}
+                  className="mr-2"
+                />
                 {category.name}
               </Link>
             ))}
@@ -90,19 +98,39 @@ export default function Header({ categories }: HeaderProps) {
                 <Link
                   key={category.slug}
                   href={`/category/${category.slug}`}
-                  className={`text-gray-600 hover:text-gray-900 ${
+                  className={`flex items-center text-gray-600 hover:text-gray-900 ${
                     pathname === `/category/${category.slug}` ? 'text-blue-600' : ''
                   }`}
                   onClick={() => setIsMenuOpen(false)}
                 >
+                  <Image
+                    src={category.img}
+                    alt={category.name}
+                    width={20}
+                    height={20}
+                    className="mr-2"
+                  />
                   {category.name}
                 </Link>
               ))}
               <Link
                 href="/search"
-                className="text-gray-600 hover:text-gray-900"
+                className="flex items-center text-gray-600 hover:text-gray-900"
                 onClick={() => setIsMenuOpen(false)}
               >
+                <svg
+                  className="w-5 h-5 mr-2"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                  />
+                </svg>
                 搜索游戏
               </Link>
             </nav>

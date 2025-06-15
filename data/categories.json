@@ -1,9 +1,41 @@
 {
     "categories": [
       {
-        "slug": "action-games",
-        "name": "动作游戏",
+        "slug": "action",
+        "name": "Action",
         "img": "https://imgs.crazygames.com/icon/Action.svg"
+      },{
+        "slug": "adventure",
+        "name": "Adventure",
+        "img": "https://imgs.crazygames.com/icon/Adventure.svg"
+      },{
+        "slug": "sports",
+        "name": "Sports",
+        "img": "https://imgs.crazygames.com/icon/Sports.svg"
+      },{
+        "slug": "beauty",
+        "name": "Beauty",
+        "img": "https://imgs.crazygames.com/icon/Beauty.svg"
+      },{
+        "slug": "bike",
+        "name": "Bike",
+        "img": "https://imgs.crazygames.com/icon/Bike.svg"
+      },{
+        "slug": "car",
+        "name": "Car",
+        "img": "https://imgs.crazygames.com/icon/Car.svg"
+      },{
+        "slug": "card",
+        "name": "Card",
+        "img": "https://imgs.crazygames.com/icon/Card.svg"
+      },{
+        "slug": "casual",
+        "name": "Casual",
+        "img": "https://imgs.crazygames.com/icon/Casual.svg"
+      },{
+        "slug": "clicker",
+        "name": "Clicker",
+        "img": "https://imgs.crazygames.com/icon/Clicker.svg"
       }
     ]
   }

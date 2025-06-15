@@ -18,7 +18,13 @@ export default function CategoryList({ categories }: CategoryListProps) {
         >
           <div className="relative aspect-video rounded-lg overflow-hidden">
             {/* 分类图片 */}
-         
+            <Image
+              src={category.img}
+              alt={category.name}
+              fill
+              className="object-cover transition-transform duration-300 group-hover:scale-105"
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            />
             
             {/* 分类名称遮罩 */}
             <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">

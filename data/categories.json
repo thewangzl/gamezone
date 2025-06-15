@@ -35,11 +35,6 @@
         "name": "Puzzle",
         "fullName": "Puzzle Games",
         "img": "https://imgs.crazygames.com/icon/Puzzle.svg"
-      },{
-        "slug": "adventure",
-        "name": "Adventure",
-        "fullName": "Adventure Games",
-        "img": "https://imgs.crazygames.com/icon/Adventure.svg"
       }
     ]
   }

@@ -25,7 +25,7 @@ export default function Header({ categories }: HeaderProps) {
   };
 
   return (
-    <header className="bg-white shadow-md">
+    <header className="fixed top-0 left-0 right-0 bg-white shadow-md z-50">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
@@ -97,7 +97,7 @@ export default function Header({ categories }: HeaderProps) {
 
         {/* Mobile Menu */}
         {isMenuOpen && (
-          <div className="md:hidden py-4">
+          <div className="md:hidden py-4 border-t">
             <nav className="flex flex-col space-y-4">
               {categories.map((category) => (
                 <Link

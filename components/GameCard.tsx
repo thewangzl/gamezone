@@ -30,7 +30,7 @@ export default function GameCard({ game }: GameCardProps) {
           <h3 className="text-xs font-medium text-gray-800 mb-0.5 line-clamp-1">
             {game.name}
           </h3>
-          <p className="text-[10px] text-gray-600">
+          <p className="text-[10px] text-gray-600 hidden">
             {game.category}
           </p>
         </div>

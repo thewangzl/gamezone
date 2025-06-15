@@ -17,6 +17,18 @@
         "name": "Beauty",
         "img": "https://imgs.crazygames.com/icon/Beauty.svg"
       },{
+        "slug": "bike",
+        "name": "Bike",
+        "img": "https://imgs.crazygames.com/icon/Bike.svg"
+      },{
+        "slug": "car",
+        "name": "Car",
+        "img": "https://imgs.crazygames.com/icon/Car.svg"
+      },{
+        "slug": "card",
+        "name": "Card",
+        "img": "https://imgs.crazygames.com/icon/Card.svg"
+      },{
         "slug": "casual",
         "name": "Casual",
         "img": "https://imgs.crazygames.com/icon/Casual.svg"

@@ -30,80 +30,93 @@ export default async function GamePage({ params }: { params: { slug: string } })
 
           {/* 游戏信息 */}
           <div className="bg-white rounded-lg shadow-md p-6">
-            <h1 className="text-3xl font-bold mb-4">{game.name}</h1>
+            <h1 className="text-3xl font-bold mb-6">{game.name}</h1>
             
-            {/* 游戏元信息 */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-              <div>
-                <h2 className="text-xl font-semibold mb-4">游戏信息</h2>
-                <dl className="space-y-3">
-                  <div>
-                    <dt className="text-gray-600">开发者</dt>
-                    <dd className="font-medium">{game.developer}</dd>
-                  </div>
-                  <div>
-                    <dt className="text-gray-600">发布日期</dt>
-                    <dd className="font-medium">{game.released}</dd>
-                  </div>
-                  <div>
-                    <dt className="text-gray-600">最后更新</dt>
-                    <dd className="font-medium">{game.last_updated}</dd>
-                  </div>
-                  <div>
-                    <dt className="text-gray-600">技术</dt>
-                    <dd className="font-medium">{game.technology}</dd>
-                  </div>
-                  <div>
-                    <dt className="text-gray-600">评分</dt>
-                    <dd className="flex items-center">
-                      <span className="text-yellow-400">★</span>
-                      <span className="ml-1 font-medium">{game.rating}</span>
-                      <span className="text-gray-500 ml-1">({game.votes} 票)</span>
-                    </dd>
-                  </div>
-                </dl>
-              </div>
-
-              <div>
-                <h2 className="text-xl font-semibold mb-4">游戏说明</h2>
-                <div className="prose max-w-none">
-                  <p className="text-gray-700 mb-4">{game.description}</p>
-                  
-                  {/* 如何玩 - 仅在内容存在时显示 */}
-                  {game.how_to_play && (
-                    <div className="mb-4">
-                      <h3 className="text-lg font-semibold mb-2">如何玩</h3>
-                      <div 
-                        className="text-gray-700"
-                        dangerouslySetInnerHTML={{ __html: game.how_to_play }}
-                      />
-                    </div>
-                  )}
-
-                  {/* 操作说明 - 仅在内容存在时显示 */}
-                  {game.controls && (
-                    <div className="mb-4">
-                      <h3 className="text-lg font-semibold mb-2">操作说明</h3>
-                      <div 
-                        className="bg-gray-50 p-4 rounded"
-                        dangerouslySetInnerHTML={{ __html: game.controls }}
-                      />
-                    </div>
-                  )}
+            {/* 游戏基本信息 */}
+            <div className="space-y-4 mb-8">
+              {game.developer && (
+                <div className="flex gap-2">
+                  <span className="text-gray-600 w-24">开发者:</span>
+                  <span className="font-medium">{game.developer}</span>
                 </div>
+              )}
+              {game.released && (
+                <div className="flex gap-2">
+                  <span className="text-gray-600 w-24">发布日期:</span>
+                  <span className="font-medium">{game.released}</span>
+                </div>
+              )}
+              {game.last_updated && (
+                <div className="flex gap-2">
+                  <span className="text-gray-600 w-24">最后更新:</span>
+                  <span className="font-medium">{game.last_updated}</span>
+                </div>
+              )}
+              {game.technology && (
+                <div className="flex gap-2">
+                  <span className="text-gray-600 w-24">技术:</span>
+                  <span className="font-medium">{game.technology}</span>
+                </div>
+              )}
+              {game.platform && (
+                <div className="flex gap-2">
+                  <span className="text-gray-600 w-24">平台:</span>
+                  <span className="font-medium">{game.platform}</span>
+                </div>
+              )}
+              <div className="flex gap-2">
+                <span className="text-gray-600 w-24">评分:</span>
+                <span className="flex items-center">
+                  <span className="text-yellow-400">★</span>
+                  <span className="ml-1 font-medium">{game.rating}</span>
+                  <span className="text-gray-500 ml-1">({game.votes} 票)</span>
+                </span>
               </div>
             </div>
 
-            {/* FAQ部分 - 仅在内容存在时显示 */}
-            {game.faq && (
+            {/* 游戏详细说明 */}
+            <div className="space-y-6">
+              {/* 游戏描述 */}
               <div>
-                <h2 className="text-xl font-semibold mb-4">常见问题</h2>
-                <div 
-                  className="prose max-w-none text-gray-700"
-                  dangerouslySetInnerHTML={{ __html: game.faq }}
-                />
+                <h2 className="text-xl font-semibold mb-3">游戏描述</h2>
+                <div className="prose max-w-none text-gray-700">
+                  {game.description}
+                </div>
               </div>
-            )}
+
+              {/* 如何玩 - 仅在内容存在时显示 */}
+              {game.how_to_play && (
+                <div>
+                  <h2 className="text-xl font-semibold mb-3">如何玩</h2>
+                  <div 
+                    className="prose max-w-none text-gray-700"
+                    dangerouslySetInnerHTML={{ __html: game.how_to_play }}
+                  />
+                </div>
+              )}
+
+              {/* 操作说明 - 仅在内容存在时显示 */}
+              {game.controls && (
+                <div>
+                  <h2 className="text-xl font-semibold mb-3">操作说明</h2>
+                  <div 
+                    className="prose max-w-none text-gray-700 bg-gray-50 p-4 rounded"
+                    dangerouslySetInnerHTML={{ __html: game.controls }}
+                  />
+                </div>
+              )}
+
+              {/* FAQ部分 - 仅在内容存在时显示 */}
+              {game.faq && (
+                <div>
+                  <h2 className="text-xl font-semibold mb-3">常见问题</h2>
+                  <div 
+                    className="prose max-w-none text-gray-700"
+                    dangerouslySetInnerHTML={{ __html: game.faq }}
+                  />
+                </div>
+              )}
+            </div>
           </div>
         </div>
 
@@ -128,7 +141,6 @@ export default async function GamePage({ params }: { params: { slug: string } })
                 ))}
             </div>
           </div>
-
         </div>
       </div>
     </div>

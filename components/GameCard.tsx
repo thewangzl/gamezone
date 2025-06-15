@@ -13,10 +13,10 @@ export default function GameCard({ game }: GameCardProps) {
 
   return (
     <Link href={`/game/${game.slug}`}>
-      <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
+      <div className="bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow duration-300">
         {/* 游戏图片 */}
-        <div className="relative aspect-video">
-        <Image
+        <div className="relative aspect-[4/3]">
+          <Image
             src={fullImageUrl}
             alt={game.name}
             fill
@@ -26,11 +26,11 @@ export default function GameCard({ game }: GameCardProps) {
         </div>
 
         {/* 游戏信息 */}
-        <div className="p-4">
-          <h3 className="text-lg font-semibold text-gray-800 mb-2">
+        <div className="p-1.5">
+          <h3 className="text-xs font-medium text-gray-800 mb-0.5 line-clamp-1">
             {game.name}
           </h3>
-          <p className="text-sm text-gray-600">
+          <p className="text-[10px] text-gray-600">
             {game.category}
           </p>
         </div>

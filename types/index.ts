@@ -21,6 +21,7 @@ export interface Category {
     released: string;
     last_updated: string;
     technology: string;
+    platform: string;
     rating: number;
     votes: number;
     how_to_play: string;

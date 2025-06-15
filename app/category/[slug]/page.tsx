@@ -23,12 +23,15 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   };
 }
 
-type Props = {
+interface PageProps {
   params: { slug: string };
   searchParams: { [key: string]: string | string[] | undefined };
-};
+}
 
-export default async function CategoryPage({ params, searchParams }: Props) {
+export default async function CategoryPage({
+  params,
+  searchParams,
+}: PageProps) {
   const category = await getCategoryBySlug(params.slug);
   if (!category) {
     return <div>Category not found</div>;

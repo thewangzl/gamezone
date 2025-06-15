@@ -31,3 +31,8 @@ export function getGameDetail(slug: string): (GameBasic & GameDetail) | null {
     ...detail
   };
 }
+
+export async function getAllGamesBasic(): Promise<GameBasic[]> {
+  const gamesBasic = await import('@/data/games-basic.json');
+  return gamesBasic.games;
+}

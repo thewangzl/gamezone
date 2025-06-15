@@ -35,7 +35,7 @@ function wrapInIframe(url: string): string {
   return `<iframe src="${url}" frameborder="0" scrolling="no" allowfullscreen style="width: 100%; height: 100%;"></iframe>`;
 }
 
-export default async function GamePage({ params }: { params: { slug: string } }) {
+export default async function GamePage({ params }: any) {
   const game = await getGameDetail(params.slug);
   const similarGames = await getGamesBasicByCategory(game?.category || '');
   const category = game ? await getCategoryBySlug(game.category) : null;

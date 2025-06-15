@@ -1,38 +1,36 @@
 // app/layout.tsx
-import { Inter } from 'next/font/google';
+import type { Metadata } from 'next';
 import './globals.css';
-import ClientLayout from '@/components/ClientLayout';
-import { Metadata } from 'next';
-
-const inter = Inter({ subsets: ['latin'] });
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
+import { getCategories } from '@/lib/data';
 
 export const metadata: Metadata = {
-  title: 'RelaxGameZone - Free Online Games Platform',
-  description: 'RelaxGameZone is a platform offering free online games, including action, adventure, puzzle, and many more game types.',
-  metadataBase: new URL('https://relaxgamezone.com'),
+  title: {
+    template: '%s | Relex Game Zone',
+    default: 'Relex Game Zone - Play Free Online Games',
+  },
+  description: 'Play the best free online games at Relex Game Zone. We offer a wide selection of games including action, adventure, puzzle, and more. No download required, play instantly in your browser!',
   icons: {
-    icon: [
-      { url: '/images/logo.png', sizes: '32x32', type: 'image/png' },
-      { url: '/images/logo.svg', type: 'image/svg+xml' }
-    ],
-    apple: [
-      { url: '/images/logo.png', sizes: '180x180', type: 'image/png' }
-    ],
-    shortcut: ['/images/logo.png']
-  }
+    icon: '/favicon.ico',
+  },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const categories = await getCategories();
+
   return (
     <html lang="en">
-      <body className={inter.className}>
-        <ClientLayout>
+      <body className="min-h-screen bg-gray-50 flex flex-col">
+        <Header categories={categories} />
+        <main className="flex-grow pt-16">
           {children}
-        </ClientLayout>
+        </main>
+        <Footer />
       </body>
     </html>
   );

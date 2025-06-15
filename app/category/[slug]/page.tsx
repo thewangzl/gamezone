@@ -1,7 +1,8 @@
 import { Metadata } from 'next';
 import { getCategoryBySlug, getGamesBasicByCategory } from '@/lib/data';
 import GameCard from '@/components/GameCard';
-import Pagination from '@/components/Pagination';
+import Pagination from '../../../components/Pagination';
+import { ReactElement } from 'react';
 
 export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
   const category = await getCategoryBySlug(params.slug);
@@ -23,23 +24,22 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   };
 }
 
-interface PageProps {
+type PageProps = {
   params: { slug: string };
-  searchParams: { [key: string]: string | string[] | undefined };
-}
+  searchParams: Record<string, string | string[] | undefined>;
+};
 
-export default async function CategoryPage({
-  params,
-  searchParams,
-}: PageProps) {
-  const category = await getCategoryBySlug(params.slug);
+export default async function CategoryPage(props: PageProps): Promise<ReactElement> {
+  const { params, searchParams } = props;
+  const { slug } = params;
+  const category = await getCategoryBySlug(slug);
   if (!category) {
     return <div>Category not found</div>;
   }
 
-  const currentPage = Number(searchParams.page) || 1;
+  const currentPage = Number(searchParams?.page ?? '1');
   const pageSize = 30;
-  const games = await getGamesBasicByCategory(params.slug);
+  const games = await getGamesBasicByCategory(slug);
   const totalPages = Math.ceil(games.length / pageSize);
   const startIndex = (currentPage - 1) * pageSize;
   const endIndex = startIndex + pageSize;
@@ -60,7 +60,7 @@ export default async function CategoryPage({
           <Pagination
             currentPage={currentPage}
             totalPages={totalPages}
-            baseUrl={`/category/${params.slug}`}
+            baseUrl={`/category/${slug}`}
           />
         </div>
       )}

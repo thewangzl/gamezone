@@ -1,13 +1,13 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import Fuse from 'fuse.js';
 import { useSearchParams } from 'next/navigation';
 import GameCard from '@/components/GameCard';
 import { GameBasic } from '@/types';
 import { getAllGamesBasic } from '@/lib/data';
 
-export default function SearchPage() {
+function SearchContent() {
   const [games, setGames] = useState<GameBasic[]>([]);
   const [searchResults, setSearchResults] = useState<GameBasic[]>([]);
   const [searchQuery, setSearchQuery] = useState('');
@@ -40,13 +40,11 @@ export default function SearchPage() {
 
   return (
     <div className="container mx-auto px-4 py-8">
-
-
       {/* 搜索结果 */}
       {searchQuery && (
         <div>
           <h2 className="text-xl font-semibold mb-4">
-            搜索结果 ({searchResults.length})
+            Search results for {query} ({searchResults.length})
           </h2>
           {searchResults.length > 0 ? (
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3">
@@ -55,10 +53,18 @@ export default function SearchPage() {
               ))}
             </div>
           ) : (
-            <p className="text-gray-500">没有找到相关游戏</p>
+            <p className="text-gray-500">No Games Found.</p>
           )}
         </div>
       )}
     </div>
+  );
+}
+
+export default function SearchPage() {
+  return (
+    <Suspense fallback={<div className="container mx-auto px-4 py-8">Loading...</div>}>
+      <SearchContent />
+    </Suspense>
   );
 }

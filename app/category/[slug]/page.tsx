@@ -22,20 +22,25 @@ export async function generateMetadata({ params }: { params: { slug: string } })
     },
   };
 }
+interface PageProps {
+  params: {
+    slug: string;
+  };
+  searchParams?: {
+    page?: string;
+  };
+}
 
 export default async function CategoryPage({ 
   params,
   searchParams,
-}: { 
-  params: { slug: string };
-  searchParams: { page?: string };
-}) {
+}:PageProps) {
   const category = await getCategoryBySlug(params.slug);
   if (!category) {
     return <div>Category not found</div>;
   }
 
-  const currentPage = Number(searchParams.page) || 1;
+  const currentPage = Number(searchParams?.page) || 1;
   const pageSize = 30;
   const games = await getGamesBasicByCategory(params.slug);
   const totalPages = Math.ceil(games.length / pageSize);

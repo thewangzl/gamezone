@@ -6,11 +6,6 @@
         "fullName": "Action Games",
         "img": "https://imgs.crazygames.com/icon/Action.svg"
       },{
-        "slug": "adventure",
-        "name": "Adventure",
-        "fullName": "Adventure Games",
-        "img": "https://imgs.crazygames.com/icon/Adventure.svg"
-      },{
         "slug": "sports",
         "name": "Sports",
         "fullName": "Sports Games",
@@ -40,6 +35,11 @@
         "name": "Puzzle",
         "fullName": "Puzzle Games",
         "img": "https://imgs.crazygames.com/icon/Puzzle.svg"
+      },{
+        "slug": "adventure",
+        "name": "Adventure",
+        "fullName": "Adventure Games",
+        "img": "https://imgs.crazygames.com/icon/Adventure.svg"
       }
     ]
   }

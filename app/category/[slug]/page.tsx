@@ -7,17 +7,18 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   const category = await getCategoryBySlug(params.slug);
   if (!category) {
     return {
-      title: '分类未找到',
-      description: '请求的分类不存在。',
+      title: 'Category Not Found - Relex Game Zone',
+      description: 'The requested category does not exist.',
     };
   }
   
   return {
-    title: category.name,
-    description: `玩最好的${category.name}。我们提供各种${category.name}，包括最新和最受欢迎的游戏。`,
+    title: `${category.name} Games - Play Free Online ${category.name} | Relex Game Zone`,
+    description: `Play the best ${category.name} games online for free. We offer a wide selection of ${category.name} games, including the latest and most popular titles.`,
     openGraph: {
-      title: `${category.name} - 游戏聚合平台`,
-      description: `玩最好的${category.name}。我们提供各种${category.name}，包括最新和最受欢迎的游戏。`,
+      title: `${category.name} Games - Play Free Online ${category.name} | Relex Game Zone`,
+      description: `Play the best ${category.name} games online for free. We offer a wide selection of ${category.name} games, including the latest and most popular titles.`,
+      type: 'website',
     },
   };
 }
@@ -31,7 +32,7 @@ export default async function CategoryPage({
 }) {
   const category = await getCategoryBySlug(params.slug);
   if (!category) {
-    return <div>分类未找到</div>;
+    return <div>Category not found</div>;
   }
 
   const currentPage = Number(searchParams.page) || 1;
@@ -44,14 +45,14 @@ export default async function CategoryPage({
 
   return (
     <div className="container mx-auto px-4 py-8">
-      <h1 className="text-4xl font-bold mb-8">{category.fullName} </h1>
+      <h1 className="text-4xl font-bold mb-8">{category.name} Games</h1>
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3">
         {currentGames.map((game) => (
           <GameCard key={game.slug} game={game} />
         ))}
       </div>
       
-      {/* 分页组件 */}
+      {/* Pagination */}
       {totalPages > 1 && (
         <div className="mt-8">
           <Pagination

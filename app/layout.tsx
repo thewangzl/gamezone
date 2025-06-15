@@ -7,8 +7,9 @@ import { Metadata } from 'next';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'GameZone - 免费在线游戏平台',
-  description: 'GameZone是一个提供免费在线游戏的平台，包含动作、冒险、益智等多种类型的游戏。',
+  title: 'RelaxGameZone - Free Online Games Platform',
+  description: 'RelaxGameZone is a platform offering free online games, including action, adventure, puzzle, and many more game types.',
+  metadataBase: new URL('https://relaxgamezone.com'),
   icons: {
     icon: [
       { url: '/images/logo.png', sizes: '32x32', type: 'image/png' },
@@ -27,7 +28,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="zh">
+    <html lang="en">
       <body className={inter.className}>
         <ClientLayout>
           {children}

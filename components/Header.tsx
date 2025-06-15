@@ -32,13 +32,13 @@ export default function Header({ categories }: HeaderProps) {
           <Link href="/" className="flex items-center space-x-2">
             <Image
               src="/images/logo.svg"
-              alt="GameZone Logo"
+              alt="RelaxGameZone Logo"
               width={40}
               height={40}
               className="h-8 w-auto"
             />
             <span className="text-2xl font-bold text-gray-800">
-              游戏聚合平台
+              RelaxGameZone
             </span>
           </Link>
 
@@ -71,14 +71,14 @@ export default function Header({ categories }: HeaderProps) {
                 type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="搜索游戏..."
+                placeholder="Search games..."
                 className="px-4 py-2 border border-gray-300 rounded-l-lg focus:outline-none focus:ring-2 focus:ring-blue-500 w-64"
               />
               <button
                 type="submit"
                 className="px-4 py-2 bg-blue-500 text-white rounded-r-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
               >
-                搜索
+                Search
               </button>
             </form>
           </div>
@@ -134,7 +134,7 @@ export default function Header({ categories }: HeaderProps) {
                   type="text"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  placeholder="搜索游戏..."
+                  placeholder="Search games..."
                   className="flex-1 px-4 py-2 border border-gray-300 rounded-l-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
                 <button
@@ -142,7 +142,7 @@ export default function Header({ categories }: HeaderProps) {
                   className="px-4 py-2 bg-blue-500 text-white rounded-r-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
                   onClick={() => setIsMenuOpen(false)}
                 >
-                  搜索
+                  Search
                 </button>
               </form>
             </nav>

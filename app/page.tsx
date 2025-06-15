@@ -5,16 +5,16 @@ import BackToTop from '@/components/BackToTop';
 import categories from '@/data/categories.json';
 import { getGamesBasicByCategory } from '@/lib/data';
 
-// 精选分类
+// Featured categories
 const featuredCategories = [
-  'action',      // 动作游戏
-  'puzzle',      // 益智游戏
-  'driving',     // 驾驶游戏
-  'casual',      // 休闲游戏
+  'action',      // Action Games
+  'puzzle',      // Puzzle Games
+  'driving',     // Driving Games
+  'casual',      // Casual Games
 ];
 
 export default async function Home() {
-  // 获取每个分类的前6个游戏
+  // Get top 6 games for each category
   const featuredGames = await Promise.all(
     featuredCategories.map(async (category) => {
       const games = await getGamesBasicByCategory(category);
@@ -27,20 +27,19 @@ export default async function Home() {
 
   return (
     <div className="container mx-auto px-4 py-8">
-
-      {/* 精选游戏 */}
+      {/* Featured Games */}
       {featuredGames.map(({ category, games }) => (
         <section key={category} className="mb-12">
           <div className="flex items-center justify-between mb-6">
             <h2 className="text-3xl font-bold">
               {categories.categories.find(c => c.slug === category)?.fullName || category}
+              <a
+                href={`/category/${category}`}
+                className="text-blue-500 hover:text-blue-600 text-lg font-normal ml-2"
+              >
+                View More →
+              </a>
             </h2>
-            <a
-              href={`/category/${category}`}
-              className="text-blue-500 hover:text-blue-600"
-            >
-              查看更多 →
-            </a>
           </div>
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3">
             {games.map((game) => (
@@ -50,7 +49,7 @@ export default async function Home() {
         </section>
       ))}
 
-      {/* 返回顶部按钮 */}
+      {/* Back to Top Button */}
       <BackToTop />
     </div>
   );

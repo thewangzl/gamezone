@@ -20,15 +20,12 @@ export interface Category {
     developer: string;
     released: string;
     last_updated: string;
-    technology: string[];
+    technology: string;
     rating: number;
     votes: number;
     how_to_play: string;
     controls: string;
-    faq: {
-      question: string;
-      answer: string;
-    }[];
+    faq: string;
   }
   
   export interface GamesDetail {

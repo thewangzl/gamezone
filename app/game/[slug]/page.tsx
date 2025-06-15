@@ -132,10 +132,10 @@ export default async function GamePage({ params }: { params: { slug: string } })
           {/* 相似游戏推荐 */}
           <div className="bg-white rounded-lg shadow-md p-4">
             <h2 className="text-xl font-semibold mb-4">相似游戏</h2>
-            <div className="space-y-4">
+            <div className="grid grid-cols-2 gap-3">
               {similarGames
                 .filter(g => g.slug !== game.slug)
-                .slice(0, 3)
+                .slice(0, 10)
                 .map((similarGame) => (
                   <GameCard key={similarGame.slug} game={similarGame} />
                 ))}

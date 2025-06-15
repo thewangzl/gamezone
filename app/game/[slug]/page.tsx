@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { getGameDetail, getGamesBasicByCategory, getCategoryBySlug } from '@/lib/data';
 import type { GameBasic, GameDetail } from '@/types';
 import GameCard from '@/components/GameCard';
+import { notFound } from 'next/navigation';
 
 // Generate metadata for the page
 export async function generateMetadata({ params }:any): Promise<Metadata> {
@@ -27,13 +28,20 @@ export async function generateMetadata({ params }:any): Promise<Metadata> {
   };
 }
 
-export default async function GamePage({ params }:any) {
+function wrapInIframe(url: string): string {
+  if (url.includes('<iframe')) {
+    return url;
+  }
+  return `<iframe src="${url}" frameborder="0" scrolling="no" allowfullscreen style="width: 100%; height: 100%;"></iframe>`;
+}
+
+export default async function GamePage({ params }: { params: { slug: string } }) {
   const game = await getGameDetail(params.slug);
   const similarGames = await getGamesBasicByCategory(game?.category || '');
   const category = game ? await getCategoryBySlug(game.category) : null;
 
   if (!game) {
-    return <div>Game not found</div>;
+    notFound();
   }
 
   return (
@@ -42,39 +50,32 @@ export default async function GamePage({ params }:any) {
         {/* Left content */}
         <div className="lg:col-span-2">
           {/* Game iframe */}
-          <div 
-            className="aspect-video mb-8 bg-gray-100 rounded-lg overflow-hidden relative"
-          >
-            <div 
-              className="absolute inset-0 w-full h-full"
-              dangerouslySetInnerHTML={{ __html: game.embed_url }}
-            />
+          <div className="relative w-full" style={{ paddingTop: '56.25%' }}>
+            <div className="absolute inset-0 w-full h-full">
+              <div 
+                className="absolute inset-0 w-full h-full"
+                dangerouslySetInnerHTML={{ __html: wrapInIframe(game.iframe_url) }}
+              />
+            </div>
           </div>
 
           {/* Game information */}
           <div className="bg-white rounded-lg shadow-md p-6">
             {/* Breadcrumb Navigation */}
-            <nav className="flex mb-6 text-sm">
-              <ol className="flex items-center space-x-2">
-                <li>
-                  <Link href="/" className="text-gray-500 hover:text-gray-700">
-                    Games
+            <nav className="flex items-center space-x-2 text-sm mb-6">
+              <Link href="/" className="text-gray-500 hover:text-gray-700">
+                Games
+              </Link>
+              <span className="text-gray-400">/</span>
+              {category && (
+                <>
+                  <Link href={`/category/${category.slug}`} className="text-gray-500 hover:text-gray-700">
+                    {category.name}
                   </Link>
-                </li>
-                <li className="text-gray-400">/</li>
-                <li>
-                  <Link 
-                    href={`/category/${game.category}`}
-                    className="text-gray-500 hover:text-gray-700"
-                  >
-                    {category?.name || game.category}
-                  </Link>
-                </li>
-                <li className="text-gray-400">/</li>
-                <li className="text-gray-900 font-medium">
-                  {game.name}
-                </li>
-              </ol>
+                  <span className="text-gray-400">/</span>
+                </>
+              )}
+              <span className="text-gray-900">{game.name}</span>
             </nav>
             
             {/* Basic game information */}

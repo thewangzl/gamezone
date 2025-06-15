@@ -15,6 +15,7 @@ export interface Category {
   
   export interface GameDetail {
     embed_url: string;
+    iframe_url: string;
     name: string;
     description: string | null;
     developer: string | null;

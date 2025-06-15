@@ -4,7 +4,7 @@ import GameCard from '@/components/GameCard';
 import Pagination from '../../../components/Pagination';
 import { ReactElement } from 'react';
 
-export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
+export async function generateMetadata({ params }:any): Promise<Metadata> {
   const category = await getCategoryBySlug(params.slug);
   if (!category) {
     return {
@@ -24,13 +24,9 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   };
 }
 
-type PageProps = {
-  params: { slug: string };
-  searchParams: Record<string, string | string[] | undefined>;
-};
 
-export default async function CategoryPage(props: PageProps): Promise<ReactElement> {
-  const { params, searchParams } = props;
+
+export default async function CategoryPage({params,searchParams}: any): Promise<ReactElement> {
   const { slug } = params;
   const category = await getCategoryBySlug(slug);
   if (!category) {

@@ -16,18 +16,17 @@ export interface Category {
   export interface GameDetail {
     embed_url: string;
     name: string;
-    category: string;
-    description: string;
-    developer: string;
-    released: string;
-    last_updated: string;
-    technology: string;
-    platform: string;
-    rating: number;
-    votes: number;
-    how_to_play: string;
-    controls: string;
-    faq: string;
+    description: string | null;
+    developer: string | null;
+    released: string | null;
+    last_updated: string | null;
+    technology: string | null;
+    platform: string | null;
+    rating: string | number;
+    votes: string |number;
+    how_to_play: string | null;
+    controls: string | null;
+    faq: string | null;
   }
   
   export interface GamesDetail {

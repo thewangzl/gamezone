@@ -5,11 +5,11 @@ import gamesBasic from '@/data/games-basic.json';
 import gamesDetail from '@/data/games-detail.json';
 
 export function getCategories(): Category[] {
-  return categories.categories;
+  return categories.categories as Category[];
 }
 
 export function getCategoryBySlug(slug: string): Category | undefined {
-  return categories.categories.find(cat => cat.slug === slug);
+  return categories.categories.find(cat => cat.slug === slug) as Category | undefined;
 }
 
 export function getGamesBasic(): GameBasic[] {
@@ -28,7 +28,8 @@ export function getGameDetail(slug: string): (GameBasic & GameDetail) | null {
   
   return {
     ...basic,
-    ...detail
+    ...detail,
+    category: basic.category // Ensure category is always from basic data
   };
 }
 

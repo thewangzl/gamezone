@@ -6,7 +6,7 @@ import type { GameBasic, GameDetail } from '@/types';
 import GameCard from '@/components/GameCard';
 
 // Generate metadata for the page
-export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
+export async function generateMetadata({ params }:any): Promise<Metadata> {
   const game = await getGameDetail(params.slug);
   const category = game ? await getCategoryBySlug(game.category) : null;
 
@@ -27,7 +27,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   };
 }
 
-export default async function GamePage({ params }: { params: { slug: string } }) {
+export default async function GamePage({ params }:any) {
   const game = await getGameDetail(params.slug);
   const similarGames = await getGamesBasicByCategory(game?.category || '');
   const category = game ? await getCategoryBySlug(game.category) : null;

@@ -5,23 +5,23 @@ import gamesBasic from '@/data/games-basic.json';
 import gamesDetail from '@/data/games-detail.json';
 
 export function getCategories(): Category[] {
-  return categories.categories as Category[];
+  return categories as Category[];
 }
 
 export function getCategoryBySlug(slug: string): Category | undefined {
-  return categories.categories.find(cat => cat.slug === slug) as Category | undefined;
+  return (categories as Category[]).find(cat => cat.slug === slug);
 }
 
 export function getGamesBasic(): GameBasic[] {
-  return gamesBasic.games;
+  return gamesBasic as GameBasic[];
 }
 
 export function getGamesBasicByCategory(categorySlug: string): GameBasic[] {
-  return gamesBasic.games.filter(game => game.category === categorySlug);
+  return (gamesBasic as GameBasic[]).filter(game => game.category_slug === categorySlug);
 }
 
 export function getGameDetail(slug: string): (GameBasic & GameDetail) | null {
-  const basic = gamesBasic.games.find(game => game.slug === slug);
+  const basic = (gamesBasic as GameBasic[]).find(game => game.slug === slug);
   const detail = (gamesDetail as GamesDetail)[slug];
   
   if (!basic || !detail) return null;
@@ -29,11 +29,12 @@ export function getGameDetail(slug: string): (GameBasic & GameDetail) | null {
   return {
     ...basic,
     ...detail,
-    category: basic.category // Ensure category is always from basic data
+    category: basic.category, // Ensure category is always from basic data
+    category_slug: basic.category_slug // Ensure category_slug is always from basic data
   };
 }
 
 export async function getAllGamesBasic(): Promise<GameBasic[]> {
   const gamesBasic = await import('@/data/games-basic.json');
-  return gamesBasic.games;
+  return gamesBasic.default as GameBasic[];
 }

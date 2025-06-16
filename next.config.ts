@@ -8,7 +8,12 @@ const nextConfig = {
         hostname: 'imgs.crazygames.com',
         port: '',
         pathname: '/**',
-      },
+      },{
+        protocol: 'https',
+        hostname: 'img.gamemonetize.com',
+        port: '',
+        pathname: '/**',
+      }
     ],
   },
 }

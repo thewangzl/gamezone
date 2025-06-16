@@ -1,40 +1,97 @@
-{
-    "categories": [
-      {
-        "slug": "action",
-        "name": "Action",
-        "fullName": "Action Games",
-        "img": "https://imgs.crazygames.com/icon/Action.svg"
-      },{
-        "slug": "sports",
-        "name": "Sports",
-        "fullName": "Sports Games",
-        "img": "https://imgs.crazygames.com/icon/Sports.svg"
-      },{
-        "slug": "beauty",
-        "name": "Beauty",
-        "fullName": "Beauty Games",
-        "img": "https://imgs.crazygames.com/icon/Beauty.svg"
-      },{
-        "slug": "casual",
-        "name": "Casual",
-        "fullName": "Casual Games",
-        "img": "https://imgs.crazygames.com/icon/Casual.svg"
-      },{
-        "slug": "clicker",
-        "name": "Clicker",
-        "fullName": "Clicker Games",
-        "img": "https://imgs.crazygames.com/icon/Clicker.svg"
-      },{
-        "slug": "driving",
-        "name": "Driving",
-        "fullName": "Driving Games",
-        "img": "https://imgs.crazygames.com/icon/Driving.svg"
-      },{
-        "slug": "puzzle",
-        "name": "Puzzle",
-        "fullName": "Puzzle Games",
-        "img": "https://imgs.crazygames.com/icon/Puzzle.svg"
-      }
-    ]
+[
+  {
+    "slug": "racing",
+    "name": "Racing",
+    "fullname": "Racing Games"
+  },
+  {
+    "slug": "sports",
+    "name": "Sports",
+    "fullname": "Sports Games"
+  },
+  {
+    "slug": "shooting",
+    "name": "Shooting",
+    "fullname": "Shooting Games"
+  },
+  {
+    "slug": "puzzles",
+    "name": "Puzzles",
+    "fullname": "Puzzles Games"
+  },
+  {
+    "slug": "girls",
+    "name": "Girls",
+    "fullname": "Girls Games"
+  },
+  {
+    "slug": "soccer",
+    "name": "Soccer",
+    "fullname": "Soccer Games"
+  },
+  {
+    "slug": "hypercasual",
+    "name": "Hypercasual",
+    "fullname": "Hypercasual Games"
+  },
+  {
+    "slug": "fighting",
+    "name": "Fighting",
+    "fullname": "Fighting Games"
+  },
+  {
+    "slug": "adventure",
+    "name": "Adventure",
+    "fullname": "Adventure Games"
+  },
+  {
+    "slug": "arcade",
+    "name": "Arcade",
+    "fullname": "Arcade Games"
+  },
+  {
+    "slug": "clicker",
+    "name": "Clicker",
+    "fullname": "Clicker Games"
+  },
+  {
+    "slug": "boys",
+    "name": "Boys",
+    "fullname": "Boys Games"
+  },
+  {
+    "slug": "action",
+    "name": "Action",
+    "fullname": "Action Games"
+  },
+  {
+    "slug": "3d",
+    "name": "3D",
+    "fullname": "3D Games"
+  },
+  {
+    "slug": "multiplayer",
+    "name": "Multiplayer",
+    "fullname": "Multiplayer Games"
+  },
+  {
+    "slug": "io",
+    "name": ".IO",
+    "fullname": ".IO Games"
+  },
+  {
+    "slug": "bejeweled",
+    "name": "Bejeweled",
+    "fullname": "Bejeweled Games"
+  },
+  {
+    "slug": "2-player",
+    "name": "2 Player",
+    "fullname": "2 Player Games"
+  },
+  {
+    "slug": "cooking",
+    "name": "Cooking",
+    "fullname": "Cooking Games"
   }
+]

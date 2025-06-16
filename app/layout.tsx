@@ -3,6 +3,7 @@ import type { Metadata } from 'next';
 import './globals.css';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import Sidebar from '@/components/Sidebar';
 import { getCategories } from '@/lib/data';
 
 export const metadata: Metadata = {
@@ -26,9 +27,16 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body className="min-h-screen bg-gray-50 flex flex-col">
-        <Header categories={categories} />
+        <Header />
         <main className="flex-grow pt-16">
-          {children}
+          <div className="container mx-auto px-4 py-8">
+            <div className="flex gap-8">
+              <Sidebar categories={categories} />
+              <div className="flex-1">
+                {children}
+              </div>
+            </div>
+          </div>
         </main>
         <Footer />
       </body>

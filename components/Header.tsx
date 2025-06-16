@@ -2,19 +2,12 @@
 'use client';
 
 import Link from 'next/link';
-import { usePathname, useRouter } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import { useState } from 'react';
-import { Category } from '@/types';
-import Image from 'next/image';
 
-interface HeaderProps {
-  categories: Category[];
-}
-
-export default function Header({ categories }: HeaderProps) {
+export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
-  const pathname = usePathname();
   const router = useRouter();
 
   const handleSearch = (e: React.FormEvent) => {
@@ -30,7 +23,7 @@ export default function Header({ categories }: HeaderProps) {
         <div className="flex items-center justify-between h-16">
           {/* Logo and Site Name */}
           <Link href="/" className="flex items-center space-x-2">
-            <Image
+            <img
               src="/images/logo.svg"
               alt="RelaxGameZone Logo"
               width={40}
@@ -42,37 +35,15 @@ export default function Header({ categories }: HeaderProps) {
             </span>
           </Link>
 
-          {/* Desktop Navigation */}
-          <nav className="hidden md:flex space-x-8">
-            {categories.map((category) => (
-              <Link
-                key={category.slug}
-                href={`/category/${category.slug}`}
-                className={`flex items-center text-gray-600 hover:text-gray-900 ${
-                  pathname === `/category/${category.slug}` ? 'text-blue-600' : ''
-                }`}
-              >
-                <Image
-                  src={category.img}
-                  alt={category.name}
-                  width={20}
-                  height={20}
-                  className="mr-2"
-                />
-                {category.name}
-              </Link>
-            ))}
-          </nav>
-
           {/* Search Bar */}
-          <div className="hidden md:block">
+          <div className="hidden md:block flex-1 max-w-2xl mx-8">
             <form onSubmit={handleSearch} className="flex items-center">
               <input
                 type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Search games..."
-                className="px-4 py-2 border border-gray-300 rounded-l-lg focus:outline-none focus:ring-2 focus:ring-blue-500 w-64"
+                className="w-full px-4 py-2 border border-gray-300 rounded-l-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
               <button
                 type="submit"
@@ -107,45 +78,23 @@ export default function Header({ categories }: HeaderProps) {
         {/* Mobile Menu */}
         {isMenuOpen && (
           <div className="md:hidden py-4 border-t">
-            <nav className="flex flex-col space-y-4">
-              {categories.map((category) => (
-                <Link
-                  key={category.slug}
-                  href={`/category/${category.slug}`}
-                  className={`flex items-center text-gray-600 hover:text-gray-900 ${
-                    pathname === `/category/${category.slug}` ? 'text-blue-600' : ''
-                  }`}
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  <Image
-                    src={category.img}
-                    alt={category.name}
-                    width={20}
-                    height={20}
-                    className="mr-2"
-                  />
-                  {category.name}
-                </Link>
-              ))}
-              
-              {/* Mobile Search */}
-              <form onSubmit={handleSearch} className="flex items-center mt-4">
-                <input
-                  type="text"
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  placeholder="Search games..."
-                  className="flex-1 px-4 py-2 border border-gray-300 rounded-l-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                />
-                <button
-                  type="submit"
-                  className="px-4 py-2 bg-blue-500 text-white rounded-r-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  Search
-                </button>
-              </form>
-            </nav>
+            {/* Mobile Search */}
+            <form onSubmit={handleSearch} className="flex items-center px-4">
+              <input
+                type="text"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                placeholder="Search games..."
+                className="flex-1 px-4 py-2 border border-gray-300 rounded-l-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+              <button
+                type="submit"
+                className="px-4 py-2 bg-blue-500 text-white rounded-r-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Search
+              </button>
+            </form>
           </div>
         )}
       </div>

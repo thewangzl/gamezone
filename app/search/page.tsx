@@ -26,7 +26,7 @@ function SearchContent() {
     if (query) {
       setSearchQuery(query);
       const fuse = new Fuse(games, {
-        keys: ['name'],
+        keys: ['title'],
         threshold: 0.3,
         includeScore: true,
       });

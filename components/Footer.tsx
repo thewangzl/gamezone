@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { getCategories } from '@/lib/data';
 
 export default function Footer() {
-  const categories = getCategories();
+  const categories = getCategories().slice(0, 9);
 
   return (
     <footer className="bg-gray-800 text-white">

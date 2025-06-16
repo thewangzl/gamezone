@@ -8,9 +8,9 @@ import { getGamesBasicByCategory } from '@/lib/data';
 // Featured categories
 const featuredCategories = [
   'action',      // Action Games
-  'puzzle',      // Puzzle Games
-  'driving',     // Driving Games
-  'casual',      // Casual Games
+  'puzzles',      // Puzzle Games
+  'racing',     // Driving Games
+  'adventure',      // Casual Games
 ];
 
 export default async function Home() {
@@ -32,7 +32,7 @@ export default async function Home() {
         <section key={category} className="mb-12">
           <div className="flex items-center justify-between mb-6">
             <h2 className="text-3xl font-bold">
-              {categories.categories.find(c => c.slug === category)?.fullName || category}
+              {categories.find(c => c.slug === category)?.fullname || category}
               <a
                 href={`/category/${category}`}
                 className="text-blue-500 hover:text-blue-600 text-lg font-normal ml-2"

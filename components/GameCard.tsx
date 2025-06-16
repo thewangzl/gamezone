@@ -9,7 +9,6 @@ interface GameCardProps {
 
 export default function GameCard({ game }: GameCardProps) {
     // 构建完整的图片URL
-    const fullImageUrl = `https://imgs.crazygames.com/${game.img}?metadata=none&quality=40&width=273&fit=crop&dpr=2`;
 
   return (
     <Link href={`/game/${game.slug}`}>
@@ -17,8 +16,8 @@ export default function GameCard({ game }: GameCardProps) {
         {/* 游戏图片 */}
         <div className="relative aspect-[4/3]">
           <Image
-            src={fullImageUrl}
-            alt={game.name}
+            src={game.thumb}
+            alt={game.title}
             fill
             className="object-cover"
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
@@ -28,7 +27,7 @@ export default function GameCard({ game }: GameCardProps) {
         {/* 游戏信息 */}
         <div className="p-1.5">
           <h3 className="text-xs font-medium text-gray-800 mb-0.5 line-clamp-1">
-            {game.name}
+            {game.title}
           </h3>
           <p className="text-[10px] text-gray-600 hidden">
             {game.category}

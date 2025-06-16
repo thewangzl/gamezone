@@ -2,34 +2,30 @@
 export interface Category {
     slug: string;
     name: string;
-    fullName: string;
-    img: string;
-  }
-  
-  export interface GameBasic {
+    fullname: string;
+}
+
+export interface GameBasic {
     slug: string;
-    name: string;
-    img: string;
+    title: string;
+    thumb: string;
     category: string;
-  }
-  
-  export interface GameDetail {
-    embed_url: string;
-    iframe_url: string;
-    name: string;
-    description: string | null;
-    developer: string | null;
-    released: string | null;
-    last_updated: string | null;
-    technology: string | null;
-    platform: string | null;
-    rating: string | number;
-    votes: string |number;
-    how_to_play: string | null;
-    controls: string | null;
-    faq: string | null;
-  }
-  
-  export interface GamesDetail {
+    category_slug: string;
+}
+
+export interface GameDetail {
+    title: string;
+    description: string;
+    instructions: string;
+    url: string;
+    category: string;
+    tags: string[];
+    thumb: string;
+    width: number;
+    height: number;
+    category_slug: string;
+}
+
+export interface GamesDetail {
     [key: string]: GameDetail;
-  }
+}

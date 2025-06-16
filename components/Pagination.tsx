@@ -19,94 +19,116 @@ export default function Pagination({ currentPage, totalPages, baseUrl }: Paginat
     return `${baseUrl}?${params.toString()}`;
   };
 
-  // 生成要显示的页码
-  const getPageNumbers = () => {
-    const pages = [];
-    const maxVisiblePages = 5;
-    
-    if (totalPages <= maxVisiblePages) {
-      // 如果总页数小于等于最大可见页数，显示所有页码
-      for (let i = 1; i <= totalPages; i++) {
-        pages.push(i);
-      }
-    } else {
-      // 始终显示第一页
-      pages.push(1);
-      
-      // 计算中间页码的起始和结束
-      let start = Math.max(2, currentPage - 1);
-      let end = Math.min(totalPages - 1, currentPage + 1);
-      
-      // 调整起始和结束页码，确保显示足够的页码
-      if (start > 2) {
-        pages.push(-1); // -1 表示省略号
-      }
-      
-      for (let i = start; i <= end; i++) {
-        pages.push(i);
-      }
-      
-      if (end < totalPages - 1) {
-        pages.push(-1); // -1 表示省略号
-      }
-      
-      // 始终显示最后一页
-      pages.push(totalPages);
+  const pages = Array.from({ length: totalPages }, (_, i) => i + 1);
+  const maxVisiblePages = 5;
+  let visiblePages = pages;
+
+  if (totalPages > maxVisiblePages) {
+    const halfMax = Math.floor(maxVisiblePages / 2);
+    let start = Math.max(1, currentPage - halfMax);
+    let end = Math.min(totalPages, start + maxVisiblePages - 1);
+
+    if (end - start + 1 < maxVisiblePages) {
+      start = Math.max(1, end - maxVisiblePages + 1);
     }
-    
-    return pages;
-  };
+
+    visiblePages = pages.slice(start - 1, end);
+  }
 
   return (
-    <nav className="flex justify-center items-center space-x-2">
-      {/* 上一页按钮 */}
-      <Link
-        href={createPageURL(currentPage - 1)}
-        className={`px-3 py-2 rounded-lg ${
-          currentPage === 1
-            ? 'bg-gray-100 text-gray-400 cursor-not-allowed'
-            : 'bg-white text-gray-700 hover:bg-gray-50'
-        }`}
-        aria-disabled={currentPage === 1}
-        tabIndex={currentPage === 1 ? -1 : 0}
-      >
-        上一页
-      </Link>
-
-      {/* 页码按钮 */}
-      {getPageNumbers().map((page, index) => (
-        page === -1 ? (
-          <span key={`ellipsis-${index}`} className="px-3 py-2 text-gray-500">
-            ...
-          </span>
-        ) : (
-          <Link
-            key={page}
-            href={createPageURL(page)}
-            className={`px-3 py-2 rounded-lg ${
-              currentPage === page
-                ? 'bg-blue-500 text-white'
-                : 'bg-white text-gray-700 hover:bg-gray-50'
-            }`}
+    <div className="flex justify-center items-center space-x-2 mt-8">
+      {/* Previous Page */}
+      {currentPage > 1 ? (
+        <Link
+          href={createPageURL(currentPage - 1)}
+          className="px-3 py-2 rounded-lg bg-white border border-gray-300 hover:bg-gray-50 transition-colors"
+          aria-label="Previous page"
+        >
+          <svg
+            className="w-5 h-5"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
           >
-            {page}
-          </Link>
-        )
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M15 19l-7-7 7-7"
+            />
+          </svg>
+        </Link>
+      ) : (
+        <span className="px-3 py-2 rounded-lg bg-gray-100 border border-gray-200 text-gray-400 cursor-not-allowed">
+          <svg
+            className="w-5 h-5"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M15 19l-7-7 7-7"
+            />
+          </svg>
+        </span>
+      )}
+
+      {/* Page Numbers */}
+      {visiblePages.map((page) => (
+        <Link
+          key={page}
+          href={createPageURL(page)}
+          className={`px-4 py-2 rounded-lg ${
+            page === currentPage
+              ? 'bg-blue-500 text-white'
+              : 'bg-white border border-gray-300 hover:bg-gray-50'
+          } transition-colors`}
+        >
+          {page}
+        </Link>
       ))}
 
-      {/* 下一页按钮 */}
-      <Link
-        href={createPageURL(currentPage + 1)}
-        className={`px-3 py-2 rounded-lg ${
-          currentPage === totalPages
-            ? 'bg-gray-100 text-gray-400 cursor-not-allowed'
-            : 'bg-white text-gray-700 hover:bg-gray-50'
-        }`}
-        aria-disabled={currentPage === totalPages}
-        tabIndex={currentPage === totalPages ? -1 : 0}
-      >
-        下一页
-      </Link>
-    </nav>
+      {/* Next Page */}
+      {currentPage < totalPages ? (
+        <Link
+          href={createPageURL(currentPage + 1)}
+          className="px-3 py-2 rounded-lg bg-white border border-gray-300 hover:bg-gray-50 transition-colors"
+          aria-label="Next page"
+        >
+          <svg
+            className="w-5 h-5"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M9 5l7 7-7 7"
+            />
+          </svg>
+        </Link>
+      ) : (
+        <span className="px-3 py-2 rounded-lg bg-gray-100 border border-gray-200 text-gray-400 cursor-not-allowed">
+          <svg
+            className="w-5 h-5"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M9 5l7 7-7 7"
+            />
+          </svg>
+        </span>
+      )}
+    </div>
   );
 } 

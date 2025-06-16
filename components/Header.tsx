@@ -1,11 +1,15 @@
-// components/Header.tsx
 'use client';
 
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
+import { Category } from '@/types';
 
-export default function Header() {
+interface HeaderProps {
+  categories: Category[];
+}
+
+export default function Header({ categories }: HeaderProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const router = useRouter();
@@ -14,6 +18,15 @@ export default function Header() {
     e.preventDefault();
     if (searchQuery.trim()) {
       router.push(`/search?q=${encodeURIComponent(searchQuery.trim())}`);
+      setIsMenuOpen(false);
+    }
+  };
+
+  const handleMobileSearch = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (searchQuery.trim()) {
+      router.push(`/search?q=${encodeURIComponent(searchQuery.trim())}`);
+      setIsMenuOpen(false);
     }
   };
 
@@ -30,7 +43,7 @@ export default function Header() {
               height={40}
               className="h-8 w-auto"
             />
-            <span className="text-2xl font-bold text-gray-800">
+            <span className="hidden md:block text-2xl font-bold text-gray-800">
               RelaxGameZone
             </span>
           </Link>
@@ -79,7 +92,7 @@ export default function Header() {
         {isMenuOpen && (
           <div className="md:hidden py-4 border-t">
             {/* Mobile Search */}
-            <form onSubmit={handleSearch} className="flex items-center px-4">
+            <form onSubmit={handleMobileSearch} className="flex items-center px-4 mb-4">
               <input
                 type="text"
                 value={searchQuery}
@@ -90,11 +103,27 @@ export default function Header() {
               <button
                 type="submit"
                 className="px-4 py-2 bg-blue-500 text-white rounded-r-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                onClick={() => setIsMenuOpen(false)}
               >
                 Search
               </button>
             </form>
+
+            {/* Mobile Categories */}
+            <div className="px-4">
+              <h3 className="text-sm font-semibold text-gray-500 mb-2">Categories</h3>
+              <div className="grid grid-cols-2 gap-2">
+                {categories.map((category) => (
+                  <Link
+                    key={category.slug}
+                    href={`/category/${category.slug}`}
+                    className="px-3 py-2 text-sm text-gray-600 hover:bg-gray-50 rounded-lg"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    {category.name}
+                  </Link>
+                ))}
+              </div>
+            </div>
           </div>
         )}
       </div>

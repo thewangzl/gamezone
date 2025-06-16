@@ -37,7 +37,7 @@ export default async function Home() {
                 href={`/category/${category}`}
                 className="text-blue-500 hover:text-blue-600 text-lg font-normal ml-2"
               >
-                View More →
+                View More
               </a>
             </h2>
           </div>

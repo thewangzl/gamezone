@@ -5,6 +5,8 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Sidebar from '@/components/Sidebar';
 import { getCategories } from '@/lib/data';
+import { Analytics } from '@vercel/analytics/next';
+
 
 export const metadata: Metadata = {
   title: {
@@ -36,6 +38,7 @@ export default async function RootLayout({
               </div>
               <div className="flex-1 min-w-0">
                 {children}
+                <Analytics />
               </div>
             </div>
           </div>

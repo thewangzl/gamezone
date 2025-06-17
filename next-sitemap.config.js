@@ -9,7 +9,7 @@ const games = JSON.parse(fs.readFileSync(path.join(__dirname, 'data/games-basic.
 
 // 生成分类页面的URL
 const categoryUrls = categories.map(category => ({
-  loc: `https://relexgamezone.com/category/${category.slug}`,
+  loc: `https://relaxgamezone.com/category/${category.slug}`,
   lastmod: new Date().toISOString(),
   changefreq: 'daily',
   priority: 0.8,
@@ -17,14 +17,14 @@ const categoryUrls = categories.map(category => ({
 
 // 生成游戏详情页面的URL
 const gameUrls = games.map(game => ({
-  loc: `https://relexgamezone.com/game/${game.slug}`,
+  loc: `https://relaxgamezone.com/game/${game.slug}`,
   lastmod: new Date().toISOString(),
   changefreq: 'weekly',
   priority: 0.6,
 }));
 
 module.exports = {
-  siteUrl: 'https://relexgamezone.com', // 替换为你的网站域名
+  siteUrl: 'https://relaxgamezone.com', // 替换为你的网站域名
   generateRobotsTxt: true, // 生成 robots.txt
   sitemapSize: 7000,
   changefreq: 'daily',

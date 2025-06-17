@@ -6,6 +6,7 @@ import Footer from '@/components/Footer';
 import Sidebar from '@/components/Sidebar';
 import { getCategories } from '@/lib/data';
 import { Analytics } from '@vercel/analytics/next';
+import Script from 'next/script';
 
 
 export const metadata: Metadata = {
@@ -28,6 +29,20 @@ export default async function RootLayout({
 
   return (
     <html lang="en">
+      <head>
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-4B6QZH6XJP"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-4B6QZH6XJP');
+          `}
+        </Script>
+      </head>
       <body className="min-h-screen bg-gray-50 flex flex-col">
         <Header categories={categories} />
         <main className="flex-grow pt-16">
